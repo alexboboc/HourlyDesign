@@ -1,5 +1,8 @@
 # Install python dependencies
-sudo python3 -m pip install selenium
+sudo python3 -m pip install selenium twitter
+
+# Install Chrome
+sudo apt-get -y install google-chrome-stable
 
 # Download Chromedriver
 OS_PREFFIX=""
@@ -19,3 +22,5 @@ sudo apt-get -y install unzip
 unzip chromedriver.zip
 chmod a+x chromedriver
 rm chromedriver.zip
+
+mkdir files
