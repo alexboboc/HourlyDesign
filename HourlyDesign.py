@@ -105,7 +105,8 @@ class HourlyDesign:
             self.add_to_history(tweet["image"])
             self.remove_image(tweet["imagePath"])
         except Exception as e:
-            raise e
+            if tweet:
+                self.remove_image(tweet["imagePath"])
             print(e)
             self.main(retry=retry - 1)
 
