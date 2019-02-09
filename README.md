@@ -26,6 +26,6 @@ The entrypoint of the project is `HourlyDesign.py`.
 
 While running the project is easy, it requires a total of 9 environment variables to be set:
 
-- `ACCESS_KEY_HD`, `ACCESS_SECRET_HD`, `CONSUMER_KEY_HD` and `CONSUMER_SECRET` for the main Twitter account.
-- `ACCESS_KEY_HDS`, `ACCESS_SECRET_HDS`, `CONSUMER_KEY_HDS` and `CONSUMER_SECRETS` for a second Twitter account posts sources as replies to the original tweets.
+- `ACCESS_KEY_HD`, `ACCESS_SECRET_HD`, `CONSUMER_KEY_HD` and `CONSUMER_SECRET_HD` for the main Twitter account.
+- `ACCESS_KEY_HDS`, `ACCESS_SECRET_HDS`, `CONSUMER_KEY_HDS` and `CONSUMER_SECRET_HDS` for a second Twitter account posts sources as replies to the original tweets.
 - `BEHANCE_TOKEN` to authenticate requests to the Behance API.
