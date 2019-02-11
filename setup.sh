@@ -21,5 +21,3 @@ wget "https://chromedriver.storage.googleapis.com/73.0.3683.20/chromedriver_${OS
 sudo apt-get -y install unzip
 unzip chromedriver.zip chromedriver -d /usr/local/bin/
 rm chromedriver.zip
-
-mkdir files
