@@ -1,6 +1,6 @@
-from Dribbble import Dribbble
-from Behance import Behance
-from FiveHundredPx import FiveHundredPx
+from providers.Dribbble import Dribbble
+from providers.Behance import Behance
+from providers.FiveHundredPx import FiveHundredPx
 from urllib import request
 from Poster import Poster
 import random, json, os, time
@@ -84,7 +84,8 @@ class HourlyDesign:
 
         return {
             "source": url,
-            "image": image
+            "image": image,
+            "provider": source.name
         }
 
 

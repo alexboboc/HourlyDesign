@@ -1,6 +1,7 @@
 class Provider:
 
-    def __init__(self, url):
+    def __init__(self, url, name):
+        self.name = name
         self.url = url
         self.INTERACTION_SLEEP_TIME = 3
 

@@ -7,7 +7,7 @@ import os
 class Behance(Provider):
     
     def __init__(self, url):
-        super().__init__(url)
+        super().__init__(url, "Behance")
         BEHANCE_TOKEN = os.environ["BEHANCE_TOKEN"].strip()
         self.url = "{}{}".format(self.url, BEHANCE_TOKEN)
 

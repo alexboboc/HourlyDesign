@@ -5,7 +5,7 @@ import json, random, os, time
 class Dribbble(Provider):
     
     def __init__(self, url):
-        super().__init__(url)
+        super().__init__(url, "Dribbble")
         options = webdriver.ChromeOptions()
         options.add_argument("--no-sandbox")
         options.add_argument("--headless")

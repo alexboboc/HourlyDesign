@@ -33,7 +33,7 @@ class Poster:
         identifier = uploader.media.upload(media=image)["media_id_string"]
         
         # Post main tweet
-        mainTweet = "Pearl {} {} {}".format(tweet["counter"], self.EMOJI, self.HASHTAGS)
+        mainTweet = "Pearl {} {} (via {}) {}".format(tweet["counter"], self.EMOJI, tweet["provider"], self.HASHTAGS)
         
         # Post reply with source link
         sourceTweet = "Source: {} @HourlyDesign".format(tweet["source"])
