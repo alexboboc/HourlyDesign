@@ -9,7 +9,7 @@ class FiveHundredPx(Provider):
         options = webdriver.ChromeOptions()
         options.add_argument("--no-sandbox")
         options.add_argument("--headless")
-        self.driver = webdriver.Chrome(executable_path="./chromedriver", chrome_options=options)
+        self.driver = webdriver.Chrome(chrome_options=options)
 
 
     def get_popular(self):

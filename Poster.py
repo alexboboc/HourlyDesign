@@ -32,8 +32,13 @@ class Poster:
         uploader = Twitter(domain="upload.twitter.com", auth=self.TWITTER_ACCESS)
         identifier = uploader.media.upload(media=image)["media_id_string"]
         
+        # Compute next number
+        last_tweet = self.TWITTER.statuses.user_timeline(screen_name="HourlyDesign")[0]["text"]
+        last_pearl_number = last_tweet.split()[1]
+        pearl_number = int(last_pearl_number) + 1
+
         # Post main tweet
-        mainTweet = "Pearl {} {} (via {}) {}".format(tweet["counter"], self.EMOJI, tweet["provider"], self.HASHTAGS)
+        mainTweet = "Pearl {} {} (via {}) {}".format(pearl_number, self.EMOJI, tweet["provider"], self.HASHTAGS)
         
         # Post reply with source link
         sourceTweet = "Source: {} @HourlyDesign".format(tweet["source"])

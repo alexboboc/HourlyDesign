@@ -34,39 +34,20 @@ class HourlyDesign:
     def add_to_history(self, link):
         # Append link at the end of history file
         logline = link + "\n"
-        with open("./files/history.log", "a+") as logfile:
+        with open("./history.log", "a+") as logfile:
             logfile.write(logline)
 
 
     def is_in_history(self, link):
         # No log (first time)
-        if not os.path.isfile("./files/history.log"):
+        if not os.path.isfile("./history.log"):
             return False
 
         # Check if given link is in history file
-        with open("./files/history.log") as logfile:
+        with open("./history.log") as logfile:
             history = logfile.readlines()
         
         return str(link) + "\n" in history
-
-
-    def read_counter(self):
-        # First time
-        if not os.path.isfile("./files/counter.txt"):
-            return 1
-
-        # Read next post number
-        with open("./files/counter.txt") as counterfile:
-            counter = int(counterfile.readline().strip())
-        counter += 1
-        
-        return counter
-
-
-    def increase_counter(self, counter):
-        # Save new counter to file
-        with open("./files/counter.txt","w") as counterout:
-            counterout.write(repr(counter))
 
 
     def get_content(self):
@@ -105,10 +86,8 @@ class HourlyDesign:
                 raise ValueError("Size bigger than 5MB")
 
             # Post content
-            tweet["counter"] = self.read_counter()
             poster = Poster()
             poster.post_double_tweet(tweet)
-            self.increase_counter(tweet["counter"])
 
             # Cleanup
             self.add_to_history(tweet["image"])
@@ -120,3 +99,4 @@ class HourlyDesign:
 
 if __name__ == "__main__":
     HourlyDesign().main()
+    print("Completed.")
