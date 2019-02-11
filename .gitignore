@@ -6,3 +6,4 @@ chromedriver
 *.pyc
 files/
 .vscode
+.DS_Store

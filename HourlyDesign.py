@@ -1,23 +1,29 @@
 from Dribbble import Dribbble
 from Behance import Behance
+from FiveHundredPx import FiveHundredPx
 from urllib import request
 from Poster import Poster
-import random, shutil, json, os
+import random, json, os, time
 
 class HourlyDesign:
 
     def __init__(self):
         self.ENTRYPOINT_BEHANCE = "https://www.behance.net/v2/projects?sort=featured_date&api_key="
         self.ENTRYPOINT_DRIBBBLE = "https://dribbble.com/shots"
+        self.ENTRYPOINT_FIVEHUNDREDPX = "https://500px.com/editors/abstract-city+%26+architecture-commercial-fashion-fine+art-performing+arts-uncategorized-urban+exploration"
         self.MAX_IMAGE_SIZE = 5000000
+
+        import ssl
+        ssl._create_default_https_context = ssl._create_unverified_context
 
 
     def download_image(self, url):
         # Download file and save and save to disk
         file_path = url.split("/")[-1]
-        with request.urlopen(url) as image, open(file_path, "wb") as file:
-            shutil.copyfileobj(image, file)
-        
+        if "." not in file_path:
+            file_path = "{}.jpg".format(int(time.time()))
+        request.urlretrieve(url, file_path)
+
         return file_path
 
 
@@ -67,10 +73,12 @@ class HourlyDesign:
         # Pick source and retrieve content from it
         source = None
         n = random.random()
-        if n < 0.5:
+        if n < .33:
             source = Dribbble(self.ENTRYPOINT_DRIBBBLE)
-        else:
+        elif n >= .33 and n < .66:
             source = Behance(self.ENTRYPOINT_BEHANCE)
+        else:
+            source = FiveHundredPx(self.ENTRYPOINT_FIVEHUNDREDPX)
 
         url, image = source.get_popular()
 
@@ -105,11 +113,9 @@ class HourlyDesign:
             self.add_to_history(tweet["image"])
             self.remove_image(tweet["imagePath"])
         except Exception as e:
-            if tweet:
-                self.remove_image(tweet["imagePath"])
             print(e)
             self.main(retry=retry - 1)
-
+            
 
 if __name__ == "__main__":
     HourlyDesign().main()
